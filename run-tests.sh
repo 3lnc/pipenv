@@ -52,7 +52,7 @@ PIPENV_PYTHON=2.7 pipenv run time pytest -v -n auto tests -m "$TEST_SUITE"
 PIPENV_PYTHON=3.6 pipenv run time pytest -v -n auto tests -m "$TEST_SUITE"
 
 # test revendoring
-pip install --upgrade invoke
-inv vendoring.update
+pip3 install --upgrade invoke
+python3 -m invoke vendoring.update
 # Cleanup junk.
 rm -fr .venv
