@@ -13,23 +13,15 @@ init:
     git config --global core.autocrlf input
 
     if ($env:APPVEYOR_PULL_REQUEST_NUMBER -and $env:APPVEYOR_BUILD_NUMBER -ne ((Invoke-RestMethod `
-
             https://ci.appveyor.com/api/projects/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_SLUG/history?recordsNumber=50).builds | `
-    
             Where-Object pullRequestId -eq $env:APPVEYOR_PULL_REQUEST_NUMBER)[0].buildNumber) { `
-    
               Write-Host "There are newer queued builds for this pull request, skipping build."
-    
               Exit-AppveyorBuild
-    
             }
 
     If (($env:SKIP_NOTAG -eq "true") -and ($env:APPVEYOR_REPO_TAG -ne "true")) {
-    
               Write-Host "Skipping build, not at a tag."
-    
               Exit-AppveyorBuild
-    
           }
 
 
